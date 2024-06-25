@@ -6,23 +6,23 @@ from tkinter import simpledialog
 pygame.init()
 
 relogio = pygame.time.Clock()
-icone  = pygame.image.load("assets/icone.png")
-iron = pygame.image.load("assets/iron.png")
-fundo = pygame.image.load("assets/fundo.png")
-fundoStart = pygame.image.load("assets/fundoStart.png")
-fundoDead = pygame.image.load("assets/fundoDead.png")
+icone  = pygame.image.load("Recursos/icone.png")
+iron = pygame.image.load("Recursos/iron.png")
+fundo = pygame.image.load("Recursos/fundo.png")
+fundoStart = pygame.image.load("Recursos/fundoStart.png")
+fundoDead = pygame.image.load("Recursos/fundoDead.png")
 
-missel = pygame.image.load("assets/missile.png")
+missel = pygame.image.load("Recursos/missile.png")
 tamanho = (800,600)
 tela = pygame.display.set_mode( tamanho ) 
 pygame.display.set_caption("Iron Man do Marcão")
 pygame.display.set_icon(icone)
-missileSound = pygame.mixer.Sound("assets/missile.wav")
-explosaoSound = pygame.mixer.Sound("assets/explosao.wav")
+missileSound = pygame.mixer.Sound("Recursos/missile.wav")
+explosaoSound = pygame.mixer.Sound("Recursos/explosao.wav")
 fonte = pygame.font.SysFont("comicsans",28)
 fonteStart = pygame.font.SysFont("comicsans",55)
 fonteMorte = pygame.font.SysFont("arial",120)
-pygame.mixer.music.load("assets/ironsound.mp3")
+pygame.mixer.music.load("Recursos/ironsound.mp3")
 
 branco = (255,255,255)
 preto = (0, 0 ,0 )
@@ -57,14 +57,7 @@ def jogar(nome):
                 movimentoXPersona = 0
             elif evento.type == pygame.KEYUP and evento.key == pygame.K_LEFT:
                 movimentoXPersona = 0
-            elif evento.type == pygame.KEYDOWN and evento.key == pygame.K_UP:
-                movimentoYPersona = -10
-            elif evento.type == pygame.KEYDOWN and evento.key == pygame.K_DOWN:
-                movimentoYPersona = 10
-            elif evento.type == pygame.KEYUP and evento.key == pygame.K_UP:
-                movimentoYPersona = 0
-            elif evento.type == pygame.KEYUP and evento.key == pygame.K_DOWN:
-                movimentoYPersona = 0
+
                 
         posicaoXPersona = posicaoXPersona + movimentoXPersona            
         posicaoYPersona = posicaoYPersona + movimentoYPersona            
