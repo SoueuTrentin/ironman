@@ -7,23 +7,23 @@ import time
 pygame.init()
 
 relogio = pygame.time.Clock()
-icone  = pygame.image.load("Recursos/icone.png")
-iron = pygame.image.load("Recursos/iron.png")
-fundo = pygame.image.load("Recursos/fundo.png")
-fundoStart = pygame.image.load("Recursos/fundoStart.png")
-fundoDead = pygame.image.load("Recursos/fundoDead.png")
+mosquiton = pygame.image.load("mosquitoD.png")
+fundo = pygame.image.load("FundoHospital.png")
+fundoStart = pygame.image.load("ABERTURA.png")
+fundoDead = pygame.image.load("mosquitoassus.png")
 
-missel = pygame.image.load("Recursos/missile.png")
+repelente = pygame.image.load("repelente.png")
+
 tamanho = (800,600)
 tela = pygame.display.set_mode( tamanho ) 
-pygame.display.set_caption("Iron Man do Marcão")
-pygame.display.set_icon(icone)
-missileSound = pygame.mixer.Sound("Recursos/missile.wav")
-explosaoSound = pygame.mixer.Sound("Recursos/explosao.wav")
+pygame.display.set_caption("caça ao mosquito da dengue")
+
+splaySound = pygame.mixer.Sound("spray-48068.mp3")
+fiascoSound = pygame.mixer.Sound("fiasco-154915.mp3")
 fonte = pygame.font.SysFont("comicsans",28)
 fonteStart = pygame.font.SysFont("comicsans",55)
 fonteMorte = pygame.font.SysFont("arial",120)
-pygame.mixer.music.load("Recursos/ironsound.mp3")
+pygame.mixer.music.load("flying-mosquito-105770.mp3")
 amarelo = (255, 255, 0)
 branco = (255,255,255)
 preto = (0, 0 ,0 )
@@ -31,7 +31,7 @@ horas = True
 
 
 def jogar(nome):
-    pygame.mixer.Sound.play(missileSound)
+    pygame.mixer.Sound.play(splaySound)
     pygame.mixer.music.play(-1)
     posicaoXPersona = 400
     posicaoYPersona = 300
@@ -48,6 +48,7 @@ def jogar(nome):
     alturaMissel  = 250
     dificuldade  = 20
     tamanhoSol = 40
+
     while True:
         for evento in pygame.event.get():
             if evento.type == pygame.QUIT:
@@ -79,7 +80,7 @@ def jogar(nome):
         tela.fill(branco)
         tela.blit(fundo, (0,0) )
         #pygame.draw.circle(tela, preto, (posicaoXPersona,posicaoYPersona), 40, 0 )
-        tela.blit( iron, (posicaoXPersona, posicaoYPersona) )
+        tela.blit( mosquiton, (posicaoXPersona, posicaoYPersona) )
         
         posicaoYMissel = posicaoYMissel + velocidadeMissel
         if posicaoYMissel > 600:
@@ -87,10 +88,10 @@ def jogar(nome):
             pontos = pontos + 1
             velocidadeMissel = velocidadeMissel + 1
             posicaoXMissel = random.randint(0,800)
-            pygame.mixer.Sound.play(missileSound)
+            pygame.mixer.Sound.play(splaySound)
             
             
-        tela.blit( missel, (posicaoXMissel, posicaoYMissel) )
+        tela.blit( repelente, (posicaoXMissel, posicaoYMissel) )
         if crescer == True:
              tamanhoSol = tamanhoSol +1
         else: 
@@ -103,7 +104,7 @@ def jogar(nome):
             crescer = True
 
         
-        texto = fonte.render(nome+"- Pontos: "+str(pontos), True, branco)
+        texto = fonte.render(nome+"- Pontos: "+str(pontos), True, preto)
         tela.blit(texto, (10,10))
         
         pixelsPersonaX = list(range(posicaoXPersona, posicaoXPersona+larguraPersona))
@@ -138,7 +139,7 @@ def jogar(nome):
 
 def dead(nome, pontos):
     pygame.mixer.music.stop()
-    pygame.mixer.Sound.play(explosaoSound)
+    pygame.mixer.Sound.play(fiascoSound)
     
     jogadas  = {}
     try:
@@ -215,7 +216,7 @@ def ranking():
 
 
 def start():
-    nome = simpledialog.askstring("Iron Man","Nome Completo:")
+    nome = simpledialog.askstring("todos contra a dengue","Nome Completo:")
     
     
     
