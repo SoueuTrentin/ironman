@@ -2,6 +2,7 @@ import pygame
 import random
 import os
 from tkinter import simpledialog
+import time
 
 pygame.init()
 
@@ -23,9 +24,10 @@ fonte = pygame.font.SysFont("comicsans",28)
 fonteStart = pygame.font.SysFont("comicsans",55)
 fonteMorte = pygame.font.SysFont("arial",120)
 pygame.mixer.music.load("Recursos/ironsound.mp3")
-
+amarelo = (255, 255, 0)
 branco = (255,255,255)
 preto = (0, 0 ,0 )
+horas = True
 
 
 def jogar(nome):
@@ -39,12 +41,13 @@ def jogar(nome):
     posicaoYMissel = -240
     velocidadeMissel = 1
     pontos = 0
+    crescer = True
     larguraPersona = 250
     alturaPersona = 127
     larguaMissel  = 50
     alturaMissel  = 250
     dificuldade  = 20
-
+    tamanhoSol = 40
     while True:
         for evento in pygame.event.get():
             if evento.type == pygame.QUIT:
@@ -88,6 +91,17 @@ def jogar(nome):
             
             
         tela.blit( missel, (posicaoXMissel, posicaoYMissel) )
+        if crescer == True:
+             tamanhoSol = tamanhoSol +1
+        else: 
+            tamanhoSol = tamanhoSol -1
+
+
+        if tamanhoSol >70:
+            crescer = False
+        elif tamanhoSol == 40:
+            crescer = True
+
         
         texto = fonte.render(nome+"- Pontos: "+str(pontos), True, branco)
         tela.blit(texto, (10,10))
@@ -101,8 +115,22 @@ def jogar(nome):
         if  len( list( set(pixelsMisselY).intersection(set(pixelsPersonaY))) ) > dificuldade:
             if len( list( set(pixelsMisselX).intersection(set(pixelsPersonaX))   ) )  > dificuldade:
                 dead(nome, pontos)
+
+     
         
     
+        pygame.draw.circle (tela, amarelo, (60,100), tamanhoSol)
+        
+                 
+        
+        
+        
+
+            
+
+            
+            
+            
         
         pygame.display.update()
         relogio.tick(60)
