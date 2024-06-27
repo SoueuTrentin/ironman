@@ -7,12 +7,12 @@ import time
 pygame.init()
 
 relogio = pygame.time.Clock()
-mosquiton = pygame.image.load("mosquitoD.png")
-fundo = pygame.image.load("FundoHospital.png")
-fundoStart = pygame.image.load("ABERTURA.png")
-fundoDead = pygame.image.load("mosquitoassus.png")
+mosquiton = pygame.image.load("mosquitoFinal.png")
+fundo = pygame.image.load("FundoFinal.jpg")
+fundoStart = pygame.image.load("aberturaFinal.png")
+fundoDead = pygame.image.load("mosquitomedo.png")
 
-repelente = pygame.image.load("repelente.png")
+repelente = pygame.image.load("repelenteFinal.png")
 
 tamanho = (800,600)
 tela = pygame.display.set_mode( tamanho ) 
